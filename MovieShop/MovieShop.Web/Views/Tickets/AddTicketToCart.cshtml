@@ -1,0 +1,40 @@
+﻿@model MovieShop.Domain.DTO.AddToShoppingCartDto
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Add Selected Ticket to User Shopping Cart:</h1>
+
+<hr />
+
+<div class="row">
+        <div class="col-md-4 m-auto">
+            <form asp-action="AddTicketToCart" method="post">
+                <input type="hidden" asp-for="TicketId" />
+                <div class="form-group">
+                    <label asp-for="SelectedTicket.Movie"></label>
+                    <input disabled asp-for="SelectedTicket.Movie" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedTicket.ValidTime"></label>
+                    <input disabled asp-for="SelectedTicket.ValidTime" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedTicket.Genre"></label>
+                    <input disabled asp-for="SelectedTicket.Genre" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Quantity"></label>
+                    <input asp-for="Quantity" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+</div>

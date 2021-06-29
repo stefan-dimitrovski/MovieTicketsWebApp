@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<MovieShop.Domain.Identity.MovieShopApplicationUser> SignInManager
+@inject UserManager<MovieShop.Domain.Identity.MovieShopApplicationUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link " asp-controller="UserRoles" asp-action="Index"><i class="fas fa-wrench"></i></a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link " asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " asp-controller="ShoppingCart" asp-action="Index"><i class="fas fa-shopping-cart"></i></a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link "><i class="fas fa-sign-out-alt"></i></button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link " asp-controller="Account" asp-action="Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " asp-controller="Account" asp-action="Login">Login</a>
+        </li>
+    }
+</ul>
